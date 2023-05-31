@@ -5,6 +5,8 @@ import BackgroundImage from './BackgroundImage';
 import Accordion from './components/Accordion';
 import TodoList from './components/TodoList';
 import axios from 'axios';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 
 function App() {
