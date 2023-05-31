@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 
-function TaskItem({ title, completed, task, setEditTask, onTaskStatusChange, onTaskDelete, handleEditTask }) {
-  const [checked, setChecked] = useState(completed);
+function TaskItem({ task, setTasks, onTaskStatusChange, onTaskDelete, onEditTask }) {
+  const [checked, setChecked] = useState(task.completed);
   const [editing, setEditing] = useState(false);
-  const [editedTitle, setEditedTitle] = useState(title);
+  const [editedTitle, setEditedTitle] = useState(task.title);
 
-  const handleStatusChange = () => {
+  const handleStatusChange = async () => {
     const updatedStatus = !checked;
     setChecked(updatedStatus);
-    onTaskStatusChange(task._id, updatedStatus);
+    await onTaskStatusChange(task._id, updatedStatus);
     handleSave();
   };
 
-  const handleDelete = () => {
-    onTaskDelete(task._id);
+  const handleDelete = async () => {
+    await onTaskDelete(task._id);
   };
 
   const handleEdit = () => {
-    setEditTask(task);
     setEditing(true);
   };
 
@@ -28,7 +27,7 @@ function TaskItem({ title, completed, task, setEditTask, onTaskStatusChange, onT
   const handleSave = async () => {
     setEditing(false);
     const editedTask = { ...task, title: editedTitle };
-    await handleEditTask(editedTask); 
+    await onEditTask(editedTask);
   };
 
   const handleCancel = () => {
@@ -53,7 +52,7 @@ function TaskItem({ title, completed, task, setEditTask, onTaskStatusChange, onT
             className="border-b focus:outline-none bg-white px-2 py-1 text-[15px] rounded-md"
           />
         ) : (
-          <span className={checked ? 'line-through' : ''}>{title}</span>
+          <span className={checked ? 'line-through' : ''}>{task.title}</span>
         )}
       </div>
       <div>
