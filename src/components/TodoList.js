@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import TaskItem from './TaskItem';
+import React, { useState } from "react";
+import axios from "axios";
+import TaskItem from "./TaskItem";
 
 function TodoList({ tasks, setTasks }) {
   const [editTask, setEditTask] = useState(null);
@@ -8,29 +8,27 @@ function TodoList({ tasks, setTasks }) {
   const handleTaskDelete = async (taskId) => {
     try {
       // Make a DELETE request to delete the task
-      await axios.delete(`https://calm-teal-fossa-tam.cyclic.app/api/tasks/${taskId}`);
-      // Handle the response and update the task list if needed
+      await axios.delete(
+        `https://calm-teal-fossa-tam.cyclic.app/api/tasks/${taskId}`
+      );
       const updatedTasks = tasks.filter((task) => task._id !== taskId);
       setTasks(updatedTasks);
     } catch (error) {
-      console.error('Error deleting task:', error);
+      console.error("Error deleting task:", error);
     }
   };
 
   const handleTaskStatusChange = async (taskId, completed) => {
     try {
       // Make a PUT request to update the task status
-      await axios.put(`https://calm-teal-fossa-tam.cyclic.app/api/tasks/${taskId}`, { completed });
-
-      // Update the task list in the state
+      await axios.put(`https://calm-teal-fossa-tam.cyclic.app/api/tasks/${taskId}`,{ completed });
       const updatedTasks = tasks.map((task) =>
         task._id === taskId ? { ...task, completed } : task
       );
       setTasks(updatedTasks);
 
-      console.log('Task status updated successfully!');
     } catch (error) {
-      console.error('Error updating task status:', error);
+      console.error("Error updating task status:", error);
     }
   };
 
@@ -38,17 +36,13 @@ function TodoList({ tasks, setTasks }) {
     try {
       // Make a PUT request to update the task
       await axios.put(`https://calm-teal-fossa-tam.cyclic.app/api/tasks/${editedTask._id}`, editedTask);
-
-      // Update the task list in the state
       const updatedTasks = tasks.map((task) =>
         task._id === editedTask._id ? editedTask : task
       );
       setTasks(updatedTasks);
-
-      console.log('Task updated successfully!');
       setEditTask(null);
     } catch (error) {
-      console.error('Error updating task:', error);
+      console.error("Error updating task:", error);
     }
   };
 
@@ -63,7 +57,7 @@ function TodoList({ tasks, setTasks }) {
           setEditTask={setEditTask}
           onTaskStatusChange={handleTaskStatusChange}
           onTaskDelete={handleTaskDelete}
-          handleEditTask={handleEditTask} // Pass the handleEditTask function to TaskItem
+          handleEditTask={handleEditTask}
         />
       ))}
     </div>
