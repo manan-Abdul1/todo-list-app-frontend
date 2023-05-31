@@ -8,7 +8,7 @@ function TodoList({ tasks, setTasks }) {
   const handleTaskDelete = async (taskId) => {
     try {
       // Make a DELETE request to delete the task
-      await axios.delete(`/tasks/${taskId}`);
+      await axios.delete(`https://calm-teal-fossa-tam.cyclic.app/api/tasks/${taskId}`);
       // Handle the response and update the task list if needed
       const updatedTasks = tasks.filter((task) => task._id !== taskId);
       setTasks(updatedTasks);
@@ -20,7 +20,7 @@ function TodoList({ tasks, setTasks }) {
   const handleTaskStatusChange = async (taskId, completed) => {
     try {
       // Make a PUT request to update the task status
-      await axios.put(`/tasks/${taskId}`, { completed });
+      await axios.put(`https://calm-teal-fossa-tam.cyclic.app/api/tasks/${taskId}`, { completed });
 
       // Update the task list in the state
       const updatedTasks = tasks.map((task) =>
@@ -37,7 +37,7 @@ function TodoList({ tasks, setTasks }) {
   const handleEditTask = async (editedTask) => {
     try {
       // Make a PUT request to update the task
-      await axios.put(`/tasks/${editedTask._id}`, editedTask);
+      await axios.put(`https://calm-teal-fossa-tam.cyclic.app/api/tasks/${editedTask._id}`, editedTask);
 
       // Update the task list in the state
       const updatedTasks = tasks.map((task) =>

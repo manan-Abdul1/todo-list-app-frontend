@@ -17,7 +17,7 @@ function AddTaskForm({ setTasks }) {
       };
   
       try {
-        await axios.post('/api/tasks', newTask);
+        await axios.post('https://calm-teal-fossa-tam.cyclic.app/api/tasks', newTask);
         // console.log('Task added successfully!');
         setTaskTitle('');  
       } catch (error) {

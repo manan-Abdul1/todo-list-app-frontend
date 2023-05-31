@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     const getList = async () => {
       try {
-        const response = await axios.get('/tasks');
+        const response = await axios.get('https://calm-teal-fossa-tam.cyclic.app/api/tasks');
         const tasksData = response.data;
         setTasks(tasksData);
       } catch (error) {
@@ -27,7 +27,7 @@ function App() {
 
   const addTask = async (task) => {
     try {
-      const response = await axios.post('/api/tasks', task);
+      const response = await axios.post('https://calm-teal-fossa-tam.cyclic.app/api/tasks', task);
       console.log(response.data, 'data');
       // Handle the successful API response
       const newTask = response.data;
