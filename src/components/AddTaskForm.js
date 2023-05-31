@@ -17,7 +17,7 @@ function AddTaskForm() {
       };
   
       try {
-        await axios.post('http://localhost:5500/api/tasks', newTask);
+        await axios.post('https://weak-rose-cormorant-toga.cyclic.app//api/tasks', newTask);
         setTaskTitle('');  
       } catch (error) {
         console.error('Error adding task:', error);

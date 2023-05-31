@@ -3,10 +3,10 @@ import axios from 'axios';
 import TaskItem from './TaskItem';
 
 function TodoList({ tasks, setTasks }) {
-  
+
   const handleTaskDelete = async (taskId) => {
     try {
-      await axios.delete(`http://localhost:5500/api/tasks/${taskId}`);
+      await axios.delete(`https://weak-rose-cormorant-toga.cyclic.app//api/tasks/${taskId}`);
       setTasks(prevTasks => prevTasks.filter(task => task._id !== taskId));
     } catch (error) {
       console.error('Error deleting task:', error);
@@ -15,7 +15,7 @@ function TodoList({ tasks, setTasks }) {
 
   const handleTaskStatusChange = async (taskId, completed) => {
     try {
-      await axios.put(`http://localhost:5500/api/tasks/${taskId}`, { completed });
+      await axios.put(`https://weak-rose-cormorant-toga.cyclic.app//api/tasks/${taskId}`, { completed });
 
       setTasks(prevTasks =>
         prevTasks.map(task => (task._id === taskId ? { ...task, completed } : task))
@@ -28,7 +28,7 @@ function TodoList({ tasks, setTasks }) {
 
   const handleEditTask = async (editedTask) => {
     try {
-      await axios.put(`http://localhost:5500/api/tasks/${editedTask._id}`, editedTask);
+      await axios.put(`https://weak-rose-cormorant-toga.cyclic.app//api/tasks/${editedTask._id}`, editedTask);
 
       setTasks(prevTasks =>
         prevTasks.map(task => (task._id === editedTask._id ? editedTask : task))

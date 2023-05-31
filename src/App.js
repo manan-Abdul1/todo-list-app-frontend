@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     const getList = async () => {
       try {
-        const response = await axios.get('http://localhost:5500/api/tasks');
+        const response = await axios.get('https://weak-rose-cormorant-toga.cyclic.app//api/tasks');
         const tasksData = response.data;
         setTasks(tasksData);
       } catch (error) {
